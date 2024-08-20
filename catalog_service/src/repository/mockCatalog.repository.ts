@@ -1,13 +1,10 @@
+import { error } from "console";
 import { ICatalogRepository } from "../interface/catalogRepository.interface";
 import { Product } from "../models/product.model";
 
 export class MockCatalogRepository implements ICatalogRepository {
-    constructor() {
-        console.log("MockCatalogRepository instantiated");
-    }
 
     create(data: Product): Promise<Product> {
-        console.log("Entered into the mock repository..!");
         const mockProduct = {
             id: 123,
             ...data
