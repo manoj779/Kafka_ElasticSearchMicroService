@@ -9,7 +9,7 @@ export class catalogRepository implements ICatalogRepository{
         throw new Error("Method not implemented.");
     }
     delete(id: any) {
-        throw new Error("Method not implemented.");
+        return Promise.resolve(id);
     }
     find(): Promise<Product[]> {
         throw new Error("Method not implemented.");

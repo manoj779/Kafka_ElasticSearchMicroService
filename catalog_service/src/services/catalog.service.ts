@@ -1,4 +1,5 @@
 import { ICatalogRepository } from "../interface/catalogRepository.interface";
+import { Product } from "../models/product.model";
 
 export class CatalogService {
     private _repository: ICatalogRepository;
@@ -14,19 +15,25 @@ export class CatalogService {
         }
         return data;
     }
-    updateProduct(input: any) {
-        // Implementation
+    async updateProduct(input: any) {
+        const data = await this._repository.update(input)
+        //emit event to update in Elastic search
+        return data;
     }
 
-    getProducts(limit: number, offset: number) {
-        // Implementation
+    // instead of thisd we will calling from elastic search..
+    async getProducts(limit: number, offset: number) {
+        const products = await this._repository.find(limit,offset);
+        return products;
     }
 
-    getProduct(id: number) {
-        // Implementation
+   async getProduct(id: number) {
+        const product = await this._repository.findOne(id);
+        return product;
     }
 
-    deleteProduct(id: number) {
-        // Implementation
+    async deleteProduct(id: number) {
+        const product = await this._repository.delete(id);
+        return product;
     }
 }
